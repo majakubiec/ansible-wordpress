@@ -1,2 +1,2 @@
 [prod]
-192.168.122.150    ansible_connection=ssh     ansible_user=root     ansible_password=123
+host1   ansible_host=192.168.122.150    ansible_password=123
