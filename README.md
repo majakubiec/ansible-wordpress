@@ -6,7 +6,7 @@
 
 
 #### Note
-If you dont want to specify the password in a script files, run the script with `--ask-pass` option and you will be prompted to type your password.
+If you don't want to specify the password in a script files, run the script with `--ask-pass` option and you will be prompted to type your password.
 If you access to a host via ssh for the first time, you will be asked about whether to add RSA key fingerprint of this host.
 However, with ask-pass being specified, ansible will directly run into an error if this is the first time you access to that host.
 To walk through this, simply run `$ export ANSIBLE_HOST_KEY_CHECKING=False` in terminal or create a file `~/.ansible.cfg` with following content:
