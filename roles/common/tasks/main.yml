@@ -1,0 +1,5 @@
+# tasks file for common
+
+- name: Install common packages
+  yum:
+    name: ["unzip"]

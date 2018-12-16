@@ -1,0 +1,11 @@
+# handlers file for apache
+
+- name: restart firewalld
+  systemd:
+    name: firewalld
+    state: restarted
+
+- name: restart httpd
+  systemd:
+    name: httpd
+    state: restarted

@@ -1,0 +1,29 @@
+# tasks file for mysql
+
+- name: Add mysql repo
+  yum:
+    name: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
+    state: present
+
+- name: Install mysql database
+  yum:
+    name: ["mysql-community-server", "MySQL-python"]
+    state: present
+
+- name: Make sure mysql db is enabled and running
+  systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Create mysql user for wordpress
+  mysql_user:
+    name: "{{ wp_db_user }}"
+    password: "{{ wp_db_password }}"
+    priv: "*.*:ALL,GRANT"
+    state: present
+
+- name: Create a new database for wordpess
+  mysql_db:
+    name: "{{ wp_db_name }}"
+    state: present

@@ -1,0 +1,19 @@
+# tasks file for apache
+
+- name: Install apache httpd
+  yum:
+    name: httpd
+    state: present
+
+- name: Make sure a service is running and enabled
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Make sure port 80 is open
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+  notify: restart firewalld

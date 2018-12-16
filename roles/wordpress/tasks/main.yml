@@ -1,0 +1,33 @@
+# tasks file for wordpress
+
+- name: Download wordpress files
+  get_url:
+    url: https://wordpress.org/latest.zip
+    dest: /tmp/latest.zip
+
+- name: Extract wordpress files into /tmp directory
+  unarchive:
+    remote_src: yes
+    src: /tmp/latest.zip
+    dest: /tmp
+    owner: apache
+    group: apache
+    mode: 0775
+
+- name: Get directory content
+  command: ls /var/www/html
+  register: dir_content
+
+- name: If dir is empty -> move wordpress files to /var/www/html directory
+  shell: mv /tmp/wordpress/* /var/www/html
+  when: dir_content.stdout == ""
+
+- name: Copy template wordpress config
+  template:
+    src: roles/wordpress/templates/wp-config.php
+    dest: /var/www/html/wp-config.php
+    owner: apache
+    group: apache
+    mode: 0775
+  notify: restart firewalld
+  when: dir_content.stdout == ""

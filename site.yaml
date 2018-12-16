@@ -1,0 +1,13 @@
+- name: Install apache2, mysql, php and wordpress
+  hosts: all
+  remote_user: root
+  # remote_user: user
+  # become: yes
+  # become_method: sudo
+
+  roles:
+    - common
+    - apache
+    - mysql
+    - php
+    - wordpress

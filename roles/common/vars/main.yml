@@ -1,0 +1,7 @@
+# vars file for common
+
+wp_db_name: wordpress
+wp_db_user: wordpress
+wp_db_password: password
+
+wp_salts: "{{ lookup('url', 'https://api.wordpress.org/secret-key/1.1/salt/', split_lines=False) }}"

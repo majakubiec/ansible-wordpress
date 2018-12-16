@@ -1,0 +1,11 @@
+# tasks file for php
+
+- name: Install php-fpm and deps
+  yum:
+    name: ["php", "php-fpm", "php-mysql"]
+    state: present
+  with_items:
+    - php
+    - php-fpm
+    - php-mysql
+  notify: restart httpd
